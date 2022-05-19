@@ -11,29 +11,29 @@ genres
 
 P.S. Функции вызывать не обязательно*/
 
-'use strict';
+// 'use strict';
 
-// Код возьмите из предыдущего домашнего задания
+// // Код возьмите из предыдущего домашнего задания
 
-let NumberOfFilms;
+// let NumberOfFilms;
 
-function start() {
-    NumberOfFilms =  +prompt('Сколько фильмов вы уже посмотрели?');
-    while (NumberOfFilms == '' || NumberOfFilms == null || isNaN(NumberOfFilms)) {
-        NumberOfFilms =  +prompt('Сколько фильмов вы уже посмотрели?');
-    }
+// function start() {
+//     NumberOfFilms =  +prompt('Сколько фильмов вы уже посмотрели?');
+//     while (NumberOfFilms == '' || NumberOfFilms == null || isNaN(NumberOfFilms)) {
+//         NumberOfFilms =  +prompt('Сколько фильмов вы уже посмотрели?');
+//     }
 
-}
+// }
 
-start();
+// start();
 
-const personalMovieDB = {
-    count: NumberOfFilms,
-    movies: {},
-    actors: {},
-    genres: [],
-    privat: true
-};
+// const personalMovieDB = {
+//     count: NumberOfFilms,
+//     movies: {},
+//     actors: {},
+//     genres: [],
+//     privat: true
+// };
 
 // function rememberMyFilms() {
 //     for (let i = 0; i < 2; i++) {
@@ -67,24 +67,87 @@ const personalMovieDB = {
 
 // detectPersonalLevel();
 
-function showMyDB(hidden) {
-    if (!hidden) {
-        console.log(personalMovieDB);
-    }
-}
+// function showMyDB(hidden) {
+//     if (!hidden) {
+//         console.log(personalMovieDB);
+//     }
+// }
 
-showMyDB(personalMovieDB.privat);
+// showMyDB(personalMovieDB.privat);
 
-function writeYourGenres() {
-    let i = 0;
-    do {
+// function writeYourGenres() {
+//     let i = 0;
+//     do {
         
-        personalMovieDB.genres[i] = prompt(`Ваш любимый жанр по номером ${i + 1}`, '');
-        i++;
-    }
-    while (i < 3);
-}
-writeYourGenres();
+//         personalMovieDB.genres[i] = prompt(`Ваш любимый жанр по номером ${i + 1}`, '');
+//         i++;
+//     }
+//     while (i < 3);
+// }
+// writeYourGenres();
 
-console.log(personalMovieDB);
-// console.log(personalMovieDB.genres);
+// console.log(personalMovieDB);
+// // console.log(personalMovieDB.genres);
+
+// function first() {
+//     //Do something
+//     setTimeout(function() {
+//         console.log(1);
+//     }, 500);
+// }
+
+// function second() {
+//     console.log(2);
+// }
+// first();
+// second();
+
+// function learnJS (lang, callback) {
+//     setTimeout(function() {
+//     console.log(`Я учу: ${lang}`);
+//     });
+//     callback();
+// }
+
+// learnJS('JavaScript', function() {
+//     console.log('Я прошел этот урок!');
+// });
+
+const options = {
+    name: 'test',
+    width: 1024,
+    height: 1024,
+    colors: {
+        border: 'black',
+        background: 'red'
+    },
+    makeTest: function() {
+        console.log('Test');
+    }
+};
+
+
+const {border, background} = options.colors;
+console.log(border);
+// options.makeTest();
+// console.log(options.name);
+
+// delete options.name;
+// console.log(options);
+// let counter = 0;
+// for (let key in options) {
+//     if (typeof(options[key]) === 'object') {
+//         for (let i in options[key]) {
+//             console.log(`Свойство ${key}:${i} имеет значение ${options[key][i]}`);
+//             counter++;
+//         }
+//     } else {
+//         console.log(`Свойство ${key} имеет значение ${options[key]}`);
+//         counter++;
+//     }
+
+// }
+// console.log(counter);
+
+console.log(Object.keys(options).length);
+
