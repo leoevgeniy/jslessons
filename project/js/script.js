@@ -27,7 +27,10 @@ const movieDB = {
 const adv = document.querySelectorAll('.promo__adv img'),
       bg = document.querySelector('.promo__bg'),
       genre = bg.querySelector('.promo__genre'),
-      filmsList = document.querySelector('.promo__interactive-list');
+      filmsList = document.querySelector('.promo__interactive-list'),
+      form = document.querySelector('form.add'),
+      inputField = form.querySelector('form input'),
+      checkBox = form.querySelector('[type="checkbox"]');
 
 const deleteElement = (arr) => {
         arr.forEach(element => {
@@ -39,36 +42,52 @@ const deleteElement = (arr) => {
         arr.innerHTML = '';
     },
 
-      addItemToList = (arr, item) => {
+      addItemToList = (arr, i, item) => {
         arr.innerHTML += `
-            <li class="promo__interactive-item">${item}
+            <li class="promo__interactive-item">${i+1}. ${item}
                 <div class="delete"></div>
             </li>
-    `},
+    `;},
       fillDB = (sourceDB, resultDB) =>{
           sortDB(sourceDB);
+          
           clearList(resultDB);
-          sourceDB.forEach(item => {
-            addItemToList(resultDB, item);
+          sourceDB.forEach((item, i) => {
+            addItemToList(resultDB, i, item);
           });
+        //   numbering(resultDB);
       },
 
       sortDB = (arr) => {
         arr.sort();
     },
       replaceBg = (element, img) => {
-          element.style.backgroundImage = url(img);
+          element.style.backgroundImage = `url(${img})`;
           console.log(img);
+      },
+
+      confirmF = (sourceDB, resultDB, value, check) => {
+          sourceDB.push(value);
+          sortDB(sourceDB);
+          
+          fillDB(sourceDB, resultDB);
+
+      },
+      numbering = (arr) => {
+        arr.forEach((item, i) => {
+            item = `${i+1} ${item}`;
+        });
       };
+
+
 
 console.log(filmsList.innerHTML);
 
-   
-
-
-
-
-
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    confirmF(movieDB.movies, filmsList, inputField.value, checkBox);
+    form.reset();
+});
 
 
 deleteElement(adv);
