@@ -28,6 +28,7 @@ const adv = document.querySelectorAll('.promo__adv img'),
       bg = document.querySelector('.promo__bg'),
       genre = bg.querySelector('.promo__genre'),
       filmsList = document.querySelector('.promo__interactive-list'),
+      filmsItem = filmsList.querySelectorAll('.promo__interactive-item'),
       form = document.querySelector('form.add'),
       inputField = form.querySelector('form input'),
       checkBox = form.querySelector('[type="checkbox"]');
@@ -55,6 +56,16 @@ const deleteElement = (arr) => {
           sourceDB.forEach((item, i) => {
             addItemToList(resultDB, i, item);
           });
+          document.querySelectorAll('.delete').forEach((btn, i) => {
+            btn.addEventListener('click', () => {
+                console.log(btn, i);
+                btn.parentElement.remove();
+                sourceDB.splice(i, 1);
+                sortDB(sourceDB);
+                console.log(i);
+                fillDB(sourceDB, resultDB);
+            });
+            });
         //   numbering(resultDB);
       },
 
@@ -63,15 +74,20 @@ const deleteElement = (arr) => {
     },
       replaceBg = (element, img) => {
           element.style.backgroundImage = `url(${img})`;
-          console.log(img);
       },
 
       confirmF = (sourceDB, resultDB, value, check) => {
-          sourceDB.push(value);
-          sortDB(sourceDB);
-          
-          fillDB(sourceDB, resultDB);
-
+        if (value) {
+            if (value.length > 21) {
+                value = `${value.substring(0, 22)}...`;
+            }
+            sourceDB.push(value);
+            sortDB(sourceDB);
+            fillDB(sourceDB, resultDB);
+            if (check) {
+                console.log('Добавляем любимый фильм!');
+            }
+        }
       },
       numbering = (arr) => {
         arr.forEach((item, i) => {
@@ -79,16 +95,11 @@ const deleteElement = (arr) => {
         });
       };
 
-
-
-console.log(filmsList.innerHTML);
-
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     confirmF(movieDB.movies, filmsList, inputField.value, checkBox);
     form.reset();
 });
-
 
 deleteElement(adv);
 replaceBg(bg, 'img/bg.jpg');
